@@ -63,6 +63,7 @@ const loginUser= asyncHandler(async(req,res)=>{
 
 
     }else{
+        res.status(401)
         throw new Error ('Invalid credintials')
        
     }
@@ -73,8 +74,8 @@ const loginUser= asyncHandler(async(req,res)=>{
 })
 
 const getMe=(req,res)=>{
-
-    res.json({message:'My profile'})
+res.status(200).json(req.user)
+    
 }
 
 

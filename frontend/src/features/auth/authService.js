@@ -19,9 +19,9 @@ return response.data
 
 const login= async(userData)=>{
  let response =await axios.post(USER_API +'login',userData)
+ console.log(response.data,'response');
  if(response.data){
   localStorage.setItem('user',JSON.stringify(response.data))
-
  }
  return response.data
 }
@@ -29,6 +29,8 @@ const login= async(userData)=>{
 const logout=()=>{
   localStorage.removeItem('user')
 }
+
+
 
 const authService={
     register,

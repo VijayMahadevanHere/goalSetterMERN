@@ -1,6 +1,6 @@
 const asyncHandler=require('express-async-handler')
 const Goal=require('../models/goalModel')
-const User=require('../models/userModel')
+
 
 
 const getGoals= asyncHandler(async(req,res)=>{
@@ -16,7 +16,7 @@ const setGoal=asyncHandler(async(req,res)=>{
            res.status(400)
            throw new Error('Please sent valid item')
     }
- let goal=   await Goal.create({
+ const goal=   await Goal.create({
         text:req.body.text,
         user:req.user.id
     })
@@ -30,8 +30,8 @@ const updateGoal=asyncHandler(async(req,res)=>{
         res.status(400)
         throw new Error('Item not exist')
     }
-    let user=await User.findById(req.user.id)
-    if(!user){
+    
+    if(!req.user){
         res.status(401)
         throw new Error('user not Found')
     }
@@ -57,8 +57,8 @@ const deleteGoal=asyncHandler(async(req,res)=>{
         res.status(400)
         throw new Error('Item not exist')
     }
-    let user=await User.findById(req.user.id)
-    if(!user){
+  
+    if(!req.user){
         res.status(401)
         throw new Error('user not Found')
     }
